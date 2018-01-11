@@ -25,7 +25,7 @@ SECRET_KEY = 'nvvv#g&k0_oz88(-3b&iikokux%k(jwl&43+&0$f#gpc7y1#)_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '2id60.win.tue.nl', 'achemete.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '2id60.win.tue.nl', 'achemete.pythonanywhere.com','0.0.0.0','31.223.170.141']
 
 
 # Application definition
@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend',
     'frontend',
+    'appApi',
+    'rest_framework',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

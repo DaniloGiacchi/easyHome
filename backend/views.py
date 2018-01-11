@@ -389,3 +389,21 @@ def about_member3_remove(request, pk):
 	title = get_object_or_404(About_MemberThree, pk=pk)
 	title.delete()
 	return redirect('backend:backend_ops_about')
+def staff_list(request):
+	user = User.objects.all()
+	return render(request, 'backend/staff_list_users.html', {'user': user})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('frontend:frontend_home')
+    else:
+        form = SignUpForm()
+    return render(request, 'frontend/signup.html', {'form': form})

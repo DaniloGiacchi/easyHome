@@ -10,15 +10,26 @@ from django.utils import timezone
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.shortcuts import render,HttpResponse
 from django.views.generic import TemplateView 
 
 from backend.models import *
-
+from appApi.models import Accomodations
 import backend
+
 ####
 ## frontend Views
 ####
+
+
+from django.views.generic import ListView
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView
+
+class AccomodationsListView(ListView):
+    model = Accomodations
+    template_name = 'frontend/home.html'
+    context_object_name = 'accomodations'
 
 def frontend_home(request):
 	restaurants = Restaurants.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -26,11 +37,20 @@ def frontend_home(request):
 	apartments = Apartments.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
 	return render(request, 'frontend/home.html', {'restaurants': restaurants, 'attractions': attractions, 'apartments':apartments})
 
-def frontend_contact(request):
+def frontend_about(request):
 	pageTitles = About_PageTitle.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	#attractions = Attractions.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	#apartments = Apartments.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	return render(request, 'frontend/about.html', {'pageTitles': pageTitles})#, 'attractions': attractions, 'apartments':apartments})
+	presentations = About_PresentationText.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	teams = About_TeamTitle.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	memberones = About_MemberOne.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	membertwos = About_MemberTwo.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	memberthrees = About_MemberThree.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+	return render(request, 'frontend/about.html', {'pageTitles': pageTitles, 'presentations': presentations, 'teams':teams, 'memberones':memberones, 'membertwos':membertwos, 'memberthrees':memberthrees})
 
-# class AboutPageView(TemplateView):
-# 	template_name = "frontend/about.html"
+class frontend_contact(TemplateView):
+ 	template_name = "frontend/contact.html"
+
+class ProfilePageView(TemplateView):
+ 	template_name = "frontend/profile.html"
+
+class LogoutPageView(TemplateView):
+ 	template_name = "registration/logged_out.html"
