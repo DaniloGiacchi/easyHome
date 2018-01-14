@@ -1,4 +1,4 @@
- {% extends 'frontend/index.html' %}
+{% extends 'frontend/index.html' %}
 {% load staticfiles %}
 
 {% block content %}
@@ -19,11 +19,16 @@
 		   				<a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-home"> </a>
 		   			  </div>
 			  		<div class="contant-bwn">
-							<div class="search-wrapper">
-								<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City';}"/>
-								<input type="submit" class="search-img" value="">
-							</div>
-			  			<a href="single.html" class="button push">View</a>
+							<form action="/search/" method="get">
+							    <div class="search-wrapper">
+
+									<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City';}" name="name"/>
+									<input type="submit" class="search-img" value="">
+
+							    </div>
+
+			  					<a class="button push"><button type="submit" href="" style="" ></button>View</a>
+							</form>
 			  		</div>
 			  	</div>
 			  </div>
@@ -40,11 +45,15 @@
 		   				<a href="#" class="hi-icon hi-icon-archive glyphicon"><i class="fa fa-car fa-2x" style="icon"aria-hidden="true"></i></a>
 		   			  </div>
 							<div class="contant-bwn">
+								<form action="/searchA/" method="get">
 								<div class="search-wrapper">
-									<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City';}"/>
+
+									<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City';}" name="name"/>
 									<input type="submit" class="search-img" value="">
+
 								</div>
-				  			<a href="single.html" class="button push">View</a>
+								<a class="button push"><button type="submit" href="" style="" ></button>View</a>
+							</form>
 				  		</div>
 			  	</div>
 			  </div>
@@ -61,11 +70,15 @@
 		   				<a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cutlery"> </a>
 		   			  </div>
 			  		<div class="contant-bwn">
+							<form action="/searchR/" method="get">
 							<div class="search-wrapper">
-								<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City';}"/>
+
+								<input type="text" value="Type a City" class="search-field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type a City'; }" name="name"/>
 								<input type="submit" class="search-img" value="">
+
 							</div>
-							<a href="single.html" class="button push">View</a>
+							<a class="button push"><button type="submit" href="" style="" ></button>View</a>
+						</form>
 			  		</div>
 			  	</div>
 			  </div>
@@ -101,29 +114,51 @@
 					<li>
 					<div class="l_g">
 					{% for a in accomodations %}
+					<form action="/single/" method="get">
+
 						<div class="col-md-3 fea-grid-1">
+
 							<div class="fea-grid-top">
-								<a href="single.html"><img src="{{a.image}}" alt="" class="img-responsive"></a>
+								<a href=""><input type="image" src ="{{a.image}}" alt="" style="" value="{{a.id}}" name ="id" class="img-responsive"></a>
 							</div>
 							<div class="fea-grid-bottom">
-								<h3><a href="single.html">{{a.title}}</a></h3>
+								<h3 style="color:white;">{{a.title}}</h3>
 								<div class="fea-grid-left">
 									<p>Rental from:</p>
+									<p>City:</p>
+									<p>Guests:</p>
 								</div>
 								<div class="fea-grid-right">
-									<p>{{a.price}} &euro;</p>
+									<p>{{a.price}}&euro;</p>
+									<p>{{a.city}}</p>
+									<p>{{a.guests}}</p>
+								</div>
+								<div class="fea-grid-center">
+									<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star"></span>
+									<p style="color:white">4.1 average based on 254 reviews.</p>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
 						  <div class="clearfix"> </div>
+						  </input>
 						</div>
+
+
+
+					</form>
 					{%endfor%}
-					
+
 				</li>
 				<div class="clearfix"> </div>
 			</ul>
 	<div id="loadMore">Load More</div>
-	
+
 	<div id="showLess">Show less</div>
 		</div>
 	</div>

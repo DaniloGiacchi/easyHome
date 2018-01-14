@@ -10,8 +10,14 @@ schema_view = get_schema_view(title='Pastebin API')"""
 app_name='frontend'
 
 urlpatterns = [	
-	
-		url(r'^$', views.frontend_home, name='frontend_home'),
+	url(r'^backend', include('backend.urls')),
+	url(r'^search/',views.pageform,name="search"),
+	url(r'^searchR/',views.pageformR,name="searchR"),
+	url(r'^searchA/',views.pageformA,name="searchA"),
+	url(r'^single/',views.single,name="single"),
+	url(r'^singleA/',views.singleA,name="singleA"),
+	url(r'^singleR/',views.singleR,name="singleR"),
+	url(r'^$', views.frontend_home, name='frontend_home'),
 	#url(r'^about$', views.AboutPageView.as_view(), name='AboutPageView'),
 	url(r'^about$', views.frontend_about, name='frontend_about'),
 	#url(r'^contact$', views.frontend_contact, name='frontend_contact'),

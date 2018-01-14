@@ -4,14 +4,14 @@ from rest_framework import serializers
 class AccomodationsSerializer(serializers.HyperlinkedModelSerializer):
      class Meta:
         model = models.Accomodations
-        fields = ('title', 'description','price','image','owner','visibility',
-                  'guests', 'bedrooms', 'beds','bathroom','services','extraInfo','city',
-                  'kindOfHouse','reviews')
+        fields = ('title', 'description','price','image','image2','image3','image4','owner','visibility',
+                  'guests', 'bedrooms', 'beds','bathroom','services','rules','extraInfo','city',
+                  'kindOfHouse','reviews','locationMap')
 
 class UsersSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Users
-        fields = ('firstName','surname','email','userId')
+        fields = ('first_name','last_name','email','location','postal',)
 
 class ReviewsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -26,12 +26,12 @@ class ServicesSerializer(serializers.HyperlinkedModelSerializer):
 class AttractionsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Attractions
-        fields = ('name','image','city','link')
+	fields = ('name','built','kindOfAttractions','title1','title2','title3','description1','description2','description3','address','image','image2','image3','city','link','locationMap')
 
 class RestaurantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Restaurant
-        fields = ('name','image','city','link')
+        fields = ('name','description','priceRange','address','image','image2','image3','city','link','locationMap','kindOfRestaurant')
 
 class DealSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

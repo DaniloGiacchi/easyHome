@@ -11,10 +11,10 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render,HttpResponse
-from django.views.generic import TemplateView 
+from django.views.generic import TemplateView
 
 from backend.models import *
-from appApi.models import Accomodations
+from appApi.models import Accomodations,Restaurant,Attractions
 import backend
 
 ####
@@ -25,6 +25,37 @@ import backend
 from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
+
+
+def single(request):
+    id  = request.GET.get('id', '')
+    accomodations = Accomodations.objects.all()
+    return render(request,'frontend/single.html',{"id":id,"accomodations":accomodations})
+
+def singleR(request):
+    id  = request.GET.get('id', '')
+    restaurants = Restaurant.objects.all()
+    return render(request,'frontend/single_restaurant.html',{"id":id,"restaurants":restaurants})
+
+def singleA(request):
+    id  = request.GET.get('id', '')
+    attractions = Attractions.objects.all()
+    return render(request,'frontend/single_attraction.html',{"id":id,"attractions":attractions})
+
+def pageform(request):
+    name = request.GET.get('name', '')
+    accomodations = Accomodations.objects.all()
+    return render(request, 'frontend/list.html',{"name" : name, "accomodations":accomodations})
+
+def pageformR(request):
+    name = request.GET.get('name', '')
+    restaurants = Restaurant.objects.all()
+    return render(request, 'frontend/listR.html',{"name" : name, "restaurants":restaurants})
+
+def pageformA(request):
+    name = request.GET.get('name', '')
+    attractions = Attractions.objects.all()
+    return render(request, 'frontend/listA.html',{"name" : name, "attractions":attractions})
 
 class AccomodationsListView(ListView):
     model = Accomodations

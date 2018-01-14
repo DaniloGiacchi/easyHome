@@ -21,6 +21,7 @@ from rest_framework import routers
 from appApi import views
 from appApi import models
 
+
 router = routers.DefaultRouter()
 router.register(r'users', views.UsersViewSet)
 router.register(r'deal',views.DealViewSet)
@@ -30,8 +31,9 @@ router.register(r'services',views.ServicesViewSet)
 router.register(r'accomodations', views.AccomodationsViewSet)
 router.register(r'reviews', views.ReviewsViewSet)
 
+
 urlpatterns = [
-    url(r'^$',views.AccomodationsListView.as_view(), name="accomodations"),
+    url(r'^$',views.AccomodationsListView.as_view(), name="accomodations"),   
     url(r'^admin/', admin.site.urls),
     url(r'', include('backend.urls')),
     url(r'', include('frontend.urls')),

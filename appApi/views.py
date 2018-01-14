@@ -19,6 +19,11 @@ class AccomodationsListView(ListView):
     template_name = 'frontend/templates/frontend/index.html'
     context_object_name = 'accomodations'
 
+def SearchView(request):
+    city = request.GET.get('searched')
+    accomodations = Accomodations.objects.all()
+    context = {'city': city,'accomodations': accomodations}
+    return render(request, "frontend/templates/frontend/template.html", context)
 """
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
