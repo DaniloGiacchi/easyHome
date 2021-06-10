@@ -4,7 +4,7 @@ coreapi==2.3.3
 coreschema==0.0.4
 defusedxml==0.4.1
 dh-virtualenv==0.11
-Django==1.11.9
+Django==2.2.24
 django-filter==0.11.0
 django-fsm==2.3.0
 django-guardian==1.4.1
